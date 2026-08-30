@@ -54,21 +54,18 @@ static int accepts(const char comment[])
     return s == Q4;
 }
 
-static void demo(const char *title, const char comment[])
-{
-    printf("%s\n", title);
-    printf("%s\n", comment);
-    printf("%s\n", accepts(comment) ? "Accepted" : "Rejected");
-}
-
 int main(void)
 {
     char accepted[] = "/*aaa*aaa*/";
     char rejected[] = "/*aaa*aaa*/a";
 
-    demo("Accepted demonstration:", accepted);
-    printf("\n");
-    demo("Rejected demonstration:", rejected);
+    printf("Accepted demonstration:\n");
+    printf("%s\n", accepted);
+    printf("%s\n\n", accepts(accepted) ? "Accepted" : "Rejected");
+
+    printf("Rejected demonstration:\n");
+    printf("%s\n", rejected);
+    printf("%s\n", accepts(rejected) ? "Accepted" : "Rejected");
 
     return 0;
 }

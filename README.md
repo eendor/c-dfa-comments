@@ -56,10 +56,10 @@ Output:
 
 ```
 Accepted demonstration:
-Input: /*aaa*aaa*/
-Result: Accepted
+/*aaa*aaa*/
+Accepted
 
 Rejected demonstration:
-Input: /*aaa*aaa*/a
-Result: Rejected
+/*aaa*aaa*/a
+Rejected
 ```

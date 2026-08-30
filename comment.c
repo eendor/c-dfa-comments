@@ -42,15 +42,33 @@ static enum State step(enum State s, enum Symbol x)
     }
 }
 
-int main(void)
+/* run the DFA over the whole string; 1 only if it halts in Q4 */
+static int accepts(const char input[])
 {
-    char input[] = "/*aaa*aaa*/";
     enum State s = Q0;
     int i;
 
     for (i = 0; input[i] != '\0'; i++)
         s = step(s, classify(input[i]));
 
-    printf("%s\n", (s == Q4) ? "Accepted" : "Rejected");
+    return s == Q4;
+}
+
+static void demo(const char *title, const char input[])
+{
+    printf("%s\n", title);
+    printf("Input: %s\n", input);
+    printf("Result: %s\n", accepts(input) ? "Accepted" : "Rejected");
+}
+
+int main(void)
+{
+    char accepted[] = "/*aaa*aaa*/";
+    char rejected[] = "/*aaa*aaa*";
+
+    demo("Accepted demonstration:", accepted);
+    printf("\n");
+    demo("Rejected demonstration:", rejected);
+
     return 0;
 }

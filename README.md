@@ -43,14 +43,23 @@ Linux / macOS:
 
 ## Example
 
-Hardcoded input in `comment.c`:
+Both demonstrations are hardcoded in `comment.c`:
 
 ```c
-char input[] = "/*aaa*aaa*/";
+char accepted[] = "/*aaa*aaa*/";
+char rejected[] = "/*aaa*aaa*";
 ```
+
+The rejected string is missing the final `/`, so the DFA halts in `Q3` instead of `Q4`.
 
 Output:
 
 ```
-Accepted
+Accepted demonstration:
+Input: /*aaa*aaa*/
+Result: Accepted
+
+Rejected demonstration:
+Input: /*aaa*aaa*
+Result: Rejected
 ```

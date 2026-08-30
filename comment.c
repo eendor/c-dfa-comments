@@ -64,7 +64,7 @@ static void demo(const char *title, const char input[])
 int main(void)
 {
     char accepted[] = "/*aaa*aaa*/";
-    char rejected[] = "/*aaa*aaa*";
+    char rejected[] = "/*aaa*aaa*/a";
 
     demo("Accepted demonstration:", accepted);
     printf("\n");

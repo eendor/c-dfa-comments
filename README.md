@@ -47,10 +47,10 @@ Both demonstrations are hardcoded in `comment.c`:
 
 ```c
 char accepted[] = "/*aaa*aaa*/";
-char rejected[] = "/*aaa*aaa*";
+char rejected[] = "/*aaa*aaa*/a";
 ```
 
-The rejected string is missing the final `/`, so the DFA halts in `Q3` instead of `Q4`.
+The rejected string completes the comment and reaches `Q4`, but the extra `a` afterwards moves the DFA from `Q4` to `DEAD`.
 
 Output:
 
@@ -60,6 +60,6 @@ Input: /*aaa*aaa*/
 Result: Accepted
 
 Rejected demonstration:
-Input: /*aaa*aaa*
+Input: /*aaa*aaa*/a
 Result: Rejected
 ```

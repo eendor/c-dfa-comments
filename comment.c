@@ -42,30 +42,32 @@ static enum State step(enum State s, enum Symbol x)
     }
 }
 
-/* run the DFA over the whole comment; 1 only if it halts in Q4 */
+/* run the DFA over one hardcoded comment; 1 only if it halts in Q4 */
 static int accepts(const char comment[])
 {
-    enum State s = Q0;
+    enum State state = Q0;
     int i;
 
     for (i = 0; comment[i] != '\0'; i++)
-        s = step(s, classify(comment[i]));
+        state = step(state, classify(comment[i]));
 
-    return s == Q4;
+    return state == Q4;
 }
 
 int main(void)
 {
-    char accepted[] = "/*aaa*aaa*/";
-    char rejected[] = "/*aaa*aaa*/a";
+    const char *comments[] = {
+        "/*aaa*aaa*/",
+        "/*aaa*aaa*/a"
+    };
+    size_t total = sizeof comments / sizeof comments[0];
+    size_t i;
 
-    printf("Accepted demonstration:\n");
-    printf("%s\n", accepted);
-    printf("%s\n\n", accepts(accepted) ? "Accepted" : "Rejected");
-
-    printf("Rejected demonstration:\n");
-    printf("%s\n", rejected);
-    printf("%s\n", accepts(rejected) ? "Accepted" : "Rejected");
+    for (i = 0; i < total; i++) {
+        if (i > 0)
+            printf("\n");
+        printf("%s\n%s\n", comments[i], accepts(comments[i]) ? "Accepted" : "Rejected");
+    }
 
     return 0;
 }

@@ -46,20 +46,20 @@ Linux / macOS:
 Both demonstrations are hardcoded in `comment.c`:
 
 ```c
-char accepted[] = "/*aaa*aaa*/";
-char rejected[] = "/*aaa*aaa*/a";
+const char *comments[] = {
+    "/*aaa*aaa*/",
+    "/*aaa*aaa*/a"
+};
 ```
 
-The rejected string completes the comment and reaches `Q4`, but the extra `a` afterwards moves the DFA from `Q4` to `DEAD`.
+The second comment reaches `Q4` on the closing `*/`, but the extra `a` afterwards moves the DFA from `Q4` to `DEAD`.
 
 Output:
 
 ```
-Accepted demonstration:
 /*aaa*aaa*/
 Accepted
 
-Rejected demonstration:
 /*aaa*aaa*/a
 Rejected
 ```
